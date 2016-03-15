@@ -6,8 +6,8 @@ lazy val trialSbtWeb = project
 name := "trial-sbt-web"
 
 libraryDependencies ++= Vector(
-  Library.scalaCheck % "test"
+  Library.akkaHttp
 )
 
-initialCommands := """|import de.heikoseeberger.trial.sbt.web._
+initialCommands := """|import de.heikoseeberger.trialsbtweb._
                       |""".stripMargin

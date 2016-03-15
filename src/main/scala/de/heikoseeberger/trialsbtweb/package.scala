@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package de.heikoseeberger.trial.sbt
+package de.heikoseeberger
 
-package object web {
+package object trialsbtweb {
 
   type Traversable[+A] = scala.collection.immutable.Traversable[A]
   type Iterable[+A] = scala.collection.immutable.Iterable[A]
