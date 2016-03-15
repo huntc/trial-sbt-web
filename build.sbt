@@ -1,7 +1,7 @@
 lazy val trialSbtWeb = project
   .copy(id = "trial-sbt-web")
   .in(file("."))
-  .enablePlugins(AutomateHeaderPlugin, GitVersioning)
+  .enablePlugins(AutomateHeaderPlugin, GitVersioning, SbtWeb)
 
 name := "trial-sbt-web"
 
