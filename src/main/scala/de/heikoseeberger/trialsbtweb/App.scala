@@ -21,6 +21,7 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Directives
 import akka.stream.ActorMaterializer
+import org.webjars.WebJarAssetLocator
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
@@ -33,11 +34,15 @@ object App {
     def route = {
       import Directives._
       def assets =
-        getFromResourceDirectory("web") ~ pathSingleSlash(get(redirect("index.html", StatusCodes.PermanentRedirect)))
+        getFromDirectory(assetLocator.getFullPath("index.html")) ~ pathSingleSlash(get(redirect("index.html", StatusCodes.PermanentRedirect)))
       assets
     }
 
     Http(system).bindAndHandle(route, "localhost", 8000)
     Await.ready(system.whenTerminated, Duration.Inf)
   }
+
+  private val assetLocator = new WebJarAssetLocator(
+    WebJarAssetLocator.getFullPathIndex(""".*""".r.pattern, this.getClass.getClassLoader)
+  )
 }
